@@ -1,14 +1,36 @@
-import { FlatList } from "react-native";
-import ChatListItem from "../components/ChatListItem";
-import chats from "../../assets/data/chats.json";
+// src/screens/ChatScreen.js
 
-const ChatsScreen = () => {
+import {ImageBackground, StyleSheet, FlatList, KeyboardAvoidingView } from "react-native";
+import bg from "../../assets/images/BG.png";
+import Message from "../components/Message";
+import messages from "../../assets/data/messages.json";
+import InputBox from "../components/InputBox";
+
+
+const ChatScreen = () => {
   return (
-    <FlatList
-      data={chats}
-      renderItem={({ item }) => <ChatListItem chat={item} />}
-    />
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={styles.bg}
+  >
+    <ImageBackground source={bg} style={styles.bg}>
+      <FlatList
+        data={messages}
+        renderItem={({ item }) => <Message message={item}/>}
+				style={{ padding: 10 }}
+				inverted
+      />
+
+    <InputBox />
+    </ImageBackground>
+    </KeyboardAvoidingView>
   );
 };
 
-export default ChatsScreen;
+const styles = StyleSheet.create({
+    bg: {
+      flex: 1,
+    },
+  });
+
+export default ChatScreen;
