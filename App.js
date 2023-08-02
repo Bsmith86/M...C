@@ -4,6 +4,8 @@ import { StyleSheet, View } from "react-native";
 import ChatListItem from "./src/components/ChatListItem";
 import ChatsScreen from "./src/screens/ChatScreen";
 import ChatScreen from './src/screens/ChatScreen';
+import Navigator from "./src/navigation";
+
 const chat = {
   id: "1",
   user: {
@@ -22,7 +24,7 @@ export default function App() {
     <View style={styles.container}>
       {/* 👇 Render a ChatListItem */}
       {/* <ChatsScreen/> */}
-      <ChatScreen/>
+      <Navigator/>
 
       <StatusBar style="auto" />
     </View>
@@ -35,6 +37,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     // alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 50,
+   
   },
 });

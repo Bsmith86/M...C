@@ -1,13 +1,17 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import React from "react";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useNavigation } from '@react-navigation/native';
+
 dayjs.extend(relativeTime);
 
 const ChatListItem = ({ chat }) => {
+  const navigation = useNavigation();
   console.log(chat);
   return (
-    <View style={styles.container}>
-			{/* User Avatar */}
+    <Pressable onPress={() => navigation.navigate('Chat', { id: chat.id, name: chat.user.name })} style={styles.container}>
+      {/* User Avatar */}
       <Image
         source={{
           uri: chat.user.image,
@@ -15,18 +19,17 @@ const ChatListItem = ({ chat }) => {
         style={styles.image}
       />
 
-			{/* Content Container */}
+      {/* Content Container */}
       <View style={styles.content}>
-				{/* Row */}
-				<View style={styles.row}>
-	        <Text style={styles.name} numbersOfLines={1}>{chat.user.name}</Text>
-		      <Text style={styles.subTitle}>{dayjs(chat.lastMessage.createdAt).fromNow(true)}</Text>
-	      </View>
+        {/* Row */}
+        <View style={styles.row}>
+          <Text style={styles.name} numberOfLines={1}>{chat.user.name}</Text>
+          <Text style={styles.subTitle}>{dayjs(chat.lastMessage.createdAt).fromNow(true)}</Text>
+        </View>
 
-        <Text style={styles.subTitle} numberOfLines={2}>{chat.lastMessage.text}
-</Text>
+        <Text style={styles.subTitle} numberOfLines={2}>{chat.lastMessage.text}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
