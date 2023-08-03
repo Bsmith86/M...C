@@ -5,21 +5,13 @@ import ChatListItem from "./src/components/ChatListItem";
 import ChatsScreen from "./src/screens/ChatScreen";
 import ChatScreen from './src/screens/ChatScreen';
 import Navigator from "./src/navigation";
+import { withAuthenticator } from "aws-amplify-react-native";
+import { Amplify } from 'aws-amplify'
+import awsconfig from './src/aws-exports'
 
-const chat = {
-  id: "1",
-  user: {
-    image:
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/lukas.jpeg",
-    name: "Lukas",
-  },
-  lastMessage: {
-    text: "Oke",
-    createdAt: "07:30",
-  },
-};
+Amplify.configure({ ...awsconfig, Analytics: { disabled: true } });
 
-export default function App() {
+ function App() {
   return (
     <View style={styles.container}>
       {/* 👇 Render a ChatListItem */}
@@ -40,3 +32,5 @@ const styles = StyleSheet.create({
    
   },
 });
+
+export default withAuthenticator(App);
