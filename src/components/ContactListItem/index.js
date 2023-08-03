@@ -13,14 +13,16 @@ const ContactListItem = ({ user }) => {
     <Pressable onPress={() => {}} style={styles.container}>
       <Image source={{ uri: user.image }} style={styles.image} />
 
-     
-        <Text style={styles.name} numberOfLines={1}>
+     <View style={styles.content}>
+     <Text style={styles.name} numberOfLines={1}>
           {user.name}
         </Text>
 
         <Text numberOfLines={2} style={styles.subTitle}>
           {user.status}
         </Text>
+     </View>
+        
       
     </Pressable>
   );
@@ -45,6 +47,9 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: 'gray',
+  },
+  content: {
+    flex: 1,
   },
 });
 
